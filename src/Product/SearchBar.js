@@ -1,3 +1,5 @@
+import { TextField, FormControlLabel, Checkbox } from "@mui/material";
+
 export default function SearchBar({
   filterText,
   inStockOnly,
@@ -6,20 +8,22 @@ export default function SearchBar({
 }) {
   return (
     <form>
-      <input
-        type="text"
+      <TextField
         value={filterText}
-        placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)}
+        label="Product"
+        fullWidth
+        id="fullWidth"
       />
-      <label>
-        <input
-          type="checkbox"
-          checked={inStockOnly}
-          onChange={(e) => onInStockOnlyChange(e.target.checked)}
-        />{" "}
-        Only show products in stock
-      </label>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={inStockOnly}
+            onChange={(e) => onInStockOnlyChange(e.target.checked)}
+          />
+        }
+        label="Only show products in stock"
+      />
     </form>
   );
 }
