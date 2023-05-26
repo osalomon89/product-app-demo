@@ -1,5 +1,5 @@
 import "./App.css";
-import FilterableProductTable from "./Product/FilterableProductTable";
+import FilterableProductTable from "./components/Product/FilterableProductTable";
 
 function App() {
   return (

@@ -8,19 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const ProductTable = ({ products, filterText, inStockOnly }) => {
-  const rows = [];
-
-  products.forEach((product) => {
-    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
-      return;
-    }
-    if (inStockOnly && !product.stocked) {
-      return;
-    }
-    rows.push(<ProductRow product={product} key={product.name} />);
-  });
-
+const ProductTable = ({ products }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -30,7 +18,11 @@ const ProductTable = ({ products, filterText, inStockOnly }) => {
             <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>{rows}</TableBody>
+        <TableBody>
+          {products.map((product) => (
+            <ProductRow product={product} key={product.name} />
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   );
