@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { TextField, FormControlLabel, Checkbox } from "@mui/material";
 
+import { FILTER_TEXT_CHANGED, FILTER_ONLY_STOCK } from "../../reducer/product";
+
 const SearchBar = ({ dispatch }) => {
-  const [text, setText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
+  const [filterText, setFilterText] = useState("");
 
   return (
     <form>
       <TextField
-        value={text}
+        value={filterText}
         onChange={(e) => {
-          setText(e.target.value);
+          setFilterText(e.target.value);
           dispatch({
-            type: "filter",
-            filterText: e.target.value,
+            type: FILTER_TEXT_CHANGED,
+            payload: {
+              inStockOnly: inStockOnly,
+              filterText: e.target.value,
+            },
           });
         }}
         label="Product"
@@ -27,8 +32,11 @@ const SearchBar = ({ dispatch }) => {
             onChange={(e) => {
               setInStockOnly(e.target.checked);
               dispatch({
-                type: "stock",
-                inStockOnly: e.target.checked,
+                type: FILTER_ONLY_STOCK,
+                payload: {
+                  inStockOnly: e.target.checked,
+                  filterText: filterText,
+                },
               });
             }}
           />

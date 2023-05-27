@@ -19,8 +19,8 @@ const ProductTable = ({ products }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            <ProductRow product={product} key={product.name} />
+          {products.map((product, i) => (
+            <ProductRow product={product} key={i} />
           ))}
         </TableBody>
       </Table>

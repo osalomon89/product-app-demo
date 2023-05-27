@@ -1,10 +1,22 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import ProductTable from "./ProductTable";
 import SearchBar from "./SearchBar";
-import { productReducer, initialState } from "../../reducer/product";
+import {
+  productReducer,
+  initialState,
+  FILTER_TEXT_CHANGED,
+} from "../../reducer/product";
 
 export default function FilterableProductTable() {
-  const [products, dispatch] = useReducer(productReducer, initialState);
+  const [state, dispatch] = useReducer(productReducer, initialState);
+  const { filteredData: products } = state;
+
+  useEffect(() => {
+    dispatch({
+      type: FILTER_TEXT_CHANGED,
+      payload: { filterText: "" },
+    });
+  }, []);
 
   return (
     <div>
