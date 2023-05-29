@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { TextField, FormControlLabel, Checkbox } from "@mui/material";
 
+import { ProductContext } from "./ProductContext";
 import { FILTER_TEXT_CHANGED, FILTER_ONLY_STOCK } from "../../reducer/product";
 
-const SearchBar = ({ dispatch }) => {
+const SearchBar = () => {
+  const { dispatch } = useContext(ProductContext);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [filterText, setFilterText] = useState("");
 
