@@ -12,6 +12,7 @@ export default function SearchBar({
         placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)}
       />
+      <br />
       <label>
         <input
           type="checkbox"
