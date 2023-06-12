@@ -1,12 +1,16 @@
 import "./App.css";
 import FilterableProductTable from "./components/Product/FilterableProductTable";
+import { Provider } from "react-redux";
+import store from "./reducer/store";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <FilterableProductTable />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <FilterableProductTable />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;

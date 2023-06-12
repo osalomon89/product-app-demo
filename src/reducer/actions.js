@@ -1,0 +1,3 @@
+// Acciones
+export const FILTER_TEXT_CHANGED = "FILTER_TEXT_CHANGED";
+export const FILTER_ONLY_STOCK = "FILTER_ONLY_STOCK";

@@ -1,3 +1,5 @@
+import * as actions from "./actions";
+
 const initialState = {
   data: [
     { id: 1, price: "$1", stocked: true, name: "Apple" },
@@ -10,13 +12,9 @@ const initialState = {
   filteredData: [],
 };
 
-// Acciones
-const FILTER_TEXT_CHANGED = "FILTER_TEXT_CHANGED";
-const FILTER_ONLY_STOCK = "FILTER_ONLY_STOCK";
-
-const productReducer = (state, action) => {
+const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FILTER_TEXT_CHANGED: {
+    case actions.FILTER_TEXT_CHANGED: {
       const {
         payload: { filterText, inStockOnly },
       } = action;
@@ -26,7 +24,7 @@ const productReducer = (state, action) => {
         filteredData: filterData(filterText, inStockOnly, state.data),
       };
     }
-    case FILTER_ONLY_STOCK: {
+    case actions.FILTER_ONLY_STOCK: {
       const {
         payload: { filterText, inStockOnly },
       } = action;
@@ -36,9 +34,8 @@ const productReducer = (state, action) => {
         filteredData: filterData(filterText, inStockOnly, state.data),
       };
     }
-    default: {
-      throw Error("Unknown action: " + action.type);
-    }
+    default:
+      return state;
   }
 };
 
@@ -50,4 +47,4 @@ const filterData = (filterText, inStockOnly, data) => {
   return filts.filter((p) => !inStockOnly || (inStockOnly && p.stocked));
 };
 
-export { productReducer, FILTER_TEXT_CHANGED, FILTER_ONLY_STOCK, initialState };
+export { productReducer };

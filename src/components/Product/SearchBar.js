@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { TextField, FormControlLabel, Checkbox } from "@mui/material";
 
-import { FILTER_TEXT_CHANGED, FILTER_ONLY_STOCK } from "../../reducer/product";
+import { FILTER_TEXT_CHANGED, FILTER_ONLY_STOCK } from "../../reducer/actions";
 
-const SearchBar = ({ dispatch }) => {
+const SearchBar = () => {
   const [inStockOnly, setInStockOnly] = useState(false);
   const [filterText, setFilterText] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = () => {
+      dispatch({
+        type: FILTER_TEXT_CHANGED,
+        payload: { filterText: "" },
+      });
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   return (
     <form>
